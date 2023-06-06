@@ -1,9 +1,13 @@
 type Product = {
   id: number;
   title: string;
-  description: string;
+  description: string | JSX.Element;
   price: number;
   image: string;
+};
+
+type Products = {
+  [key: number]: Product;
 };
 
 type Author = {
@@ -12,4 +16,4 @@ type Author = {
   image: string;
 };
 
-export type { Product, Author };
+export type { Product, Author, Products };
