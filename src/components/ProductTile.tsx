@@ -3,9 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 const ProductTile = ({ product }: { product: Product }) => {
-  const handleProductClick = () => {
-    // open the product page
-  };
   return (
     <Link href={`/products/${product.id}`}>
       <div className="">
