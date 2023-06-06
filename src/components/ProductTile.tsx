@@ -1,9 +1,13 @@
 import { Product } from "@/types";
 import Image from "next/image";
+import Link from "next/link";
 
 const ProductTile = ({ product }: { product: Product }) => {
+  const handleProductClick = () => {
+    // open the product page
+  };
   return (
-    <button className="rounde">
+    <Link href={`/products/${product.id}`}>
       <div className="">
         <Image
           src={`/images/${product.image}`}
@@ -13,7 +17,7 @@ const ProductTile = ({ product }: { product: Product }) => {
           className="rounded-lg"
         />
       </div>
-    </button>
+    </Link>
   );
 };
 

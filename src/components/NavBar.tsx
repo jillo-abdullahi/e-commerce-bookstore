@@ -33,9 +33,9 @@ const NavBar = () => {
     },
     {
       content: (
-        <div className="flex items-center justify-center space-x-2">
+        <div className="flex items-center justify-center space-x-2 group">
           <div
-            className="flex-shrink-0 flex items-center justify-center rounded-full h-12 w-12 border border-gray-200 hover:border-gray-00"
+            className="flex-shrink-0 flex items-center justify-center rounded-full h-12 w-12 border-2 border-gray-200 group-hover:border-orange"
             style={{
               background: "url('/images/favicon.svg') no-repeat center center",
               backgroundSize: "cover",
