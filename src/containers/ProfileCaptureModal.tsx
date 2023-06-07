@@ -21,13 +21,14 @@ const ProfileCaptureModal: React.FC<ProfileCaptureModalProps> = ({
   const webcamRef = useRef<Webcam>(null);
 
   // default crop area size as a percentage of the image size
-  const [crop, setCrop] = useState<Crop>({
+  const defaultCrop: Crop = {
     unit: "%",
     x: 10,
     y: 10,
     width: 80,
     height: 80,
-  });
+  };
+  const [crop, setCrop] = useState<Crop>(defaultCrop);
   const [imageSrc, setImageSrc] = useState<string | null>("");
 
   // capture the image from the webcam
@@ -46,12 +47,19 @@ const ProfileCaptureModal: React.FC<ProfileCaptureModalProps> = ({
     facingMode: "user",
   };
 
+  // clear modal state on close
+  const handleClose = () => {
+    setImageSrc(null);
+    setCrop(defaultCrop);
+    setIsOpen();
+  };
+
   return (
-    <Modal open={isOpen} setOpen={setIsOpen}>
+    <Modal open={isOpen} setOpen={handleClose}>
       <div className="pb-4 bg-gray-200">
         {imageSrc ? (
           <div>
-            <ModalTitle title="Crop photo" setIsOpen={setIsOpen} />
+            <ModalTitle title="Crop photo" setIsOpen={handleClose} />
             <div className="mx-auto w-[400px] h-[400px]">
               <ReactCrop
                 crop={crop}
@@ -80,7 +88,7 @@ const ProfileCaptureModal: React.FC<ProfileCaptureModalProps> = ({
             </div>
             <button
               className="flex items-center justify-center w-full py-4 text-white bg-orange rounded-md mt-6 hover:bg-opacity-80 max-w-[400px] mx-auto"
-              onClick={setIsOpen}
+              onClick={handleClose}
             >
               <CameraIcon className="h-4 w-4 text-white mr-2" />
               Set profile photo
@@ -88,7 +96,7 @@ const ProfileCaptureModal: React.FC<ProfileCaptureModalProps> = ({
           </div>
         ) : (
           <>
-            <ModalTitle title="Change profile photo" setIsOpen={setIsOpen} />
+            <ModalTitle title="Change profile photo" setIsOpen={handleClose} />
             <div className="border border-dashed border-gray-400 rounded-md overflow-hidden mx-auto w-[400px] h-[400px]">
               <Webcam
                 audio={false}
