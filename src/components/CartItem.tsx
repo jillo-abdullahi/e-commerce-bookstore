@@ -21,9 +21,11 @@ const CartItem = () => {
             Harry Potter and the Chamber of Secrets
           </p>
           <p className="text-orange text-sm">J.K. Rowling</p>
-          <div className="flex lg:hidden items-center justify-start font-bold">
-            <span className="text-gray-700">$</span>
-            <span className="text-gray-900">19.99</span>
+          <div className="flex lg:hidden items-center justify-start mt-2">
+            <span className="text-gray-600">$19.99</span>
+            <span className="text-gray-600 text-sm px-1">x</span>
+            <span className="text-gray-600">2</span>
+            <span className="text-gray-900 pl-2 font-bold">$30.44</span>
           </div>
         </div>
       </div>
