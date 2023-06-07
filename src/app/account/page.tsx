@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import InputField from "@/components/InputField";
+
 import Image from "next/image";
 import { PencilIcon } from "@heroicons/react/24/outline";
 import ProfileCaptureModal from "@/containers/ProfileCaptureModal";
@@ -19,14 +20,17 @@ export default function AccountPage() {
 
   return (
     <div className="container mx-auto pt-12 pb-24 max-w-[1015px]">
-      <h1 className="text-2xl sm:text-4xl font-bold mb-10 text-gray-900">
+      <h1 className="text-2xl sm:text-4xl font-bold mb-12 text-gray-900">
         Account settings
       </h1>
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 lg:gap-x-2">
         {/* profile image  */}
         <div className="lg:col-span-5">
           <div className="flex flex-col items-start justify-center h-full">
-            <div className="relative rounded-full bg-gradient-to-r from-gray-300 to-gray-400 border-gray-500 border">
+            <div
+              className="relative rounded-full bg-gradient-to-r from-gray-300 to-gray-400 border-gray-500 border cursor-pointer"
+              onClick={openCaptureModal}
+            >
               <Image
                 src={profileImage}
                 alt="profile image"
@@ -35,7 +39,7 @@ export default function AccountPage() {
                 className="rounded-full border-orange-100 border-4"
               />
               <button
-                className="absolute group bottom-5 right-5 bg-gray-100 rounded-full p-2 hover:bg-orange"
+                className="absolute group bottom-7 right-7 bg-gray-100 rounded-full p-2 hover:bg-orange"
                 onClick={openCaptureModal}
               >
                 <PencilIcon className="h-4 w-4 text-orange group-hover:text-white" />
@@ -80,7 +84,7 @@ export default function AccountPage() {
               />
             </div>
 
-            <div className="sm:col-span-4">
+            <div className="sm:col-span-2">
               <InputField
                 label="Billing status"
                 id="billing-status"
@@ -90,6 +94,13 @@ export default function AccountPage() {
                 disabled={true}
               />
             </div>
+          </div>
+
+          {/* save changes button  */}
+          <div className="flex justify-start mt-10">
+            <button className="flex items-center justify-center py-3 px-6 text-white bg-orange rounded-md hover:bg-opacity-80 max-w-[400px]">
+              Save changes
+            </button>
           </div>
         </div>
       </div>
