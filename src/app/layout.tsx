@@ -1,7 +1,7 @@
 import "./globals.css";
 import { Kumbh_Sans } from "next/font/google";
 import NavBar from "@/components/NavBar";
-import { Providers } from "@/state/provider";
+import { Providers } from "@/redux/provider";
 
 const kumbh_Sans = Kumbh_Sans({
   weight: ["300", "400", "500", "600"],

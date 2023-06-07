@@ -1,18 +1,47 @@
 "use client";
 
-import { useState } from "react";
-import InputField from "@/components/InputField";
-
+import { useState, useEffect, use } from "react";
 import Image from "next/image";
 import { PencilIcon } from "@heroicons/react/24/outline";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "@/redux/store";
+import { updateUser } from "@/redux/slices/userSlice";
+import InputField from "@/components/InputField";
 import ProfileCaptureModal from "@/containers/ProfileCaptureModal";
 
 export default function AccountPage() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [profileImage, setProfileImage] = useState("/images/favicon.svg");
+  const {
+    user: { firstName, lastName, profileImage, email, billingStatus },
+  } = useSelector((state: RootState) => state);
+  const dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
+  const [userDetails, setUserDetails] = useState({
+    firstName,
+    lastName,
+    profileImage,
+    email,
+    billingStatus,
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserDetails({
+      ...userDetails,
+      [e.target.id]: e.target.value,
+    });
+  };
+
+  const handleProfileImageChange = (image: string) => {
+    setUserDetails({
+      ...userDetails,
+      profileImage: image,
+    });
+  };
+
+  // push changes to redux store
+  const handleSaveChanges = () => {
+    dispatch(updateUser(userDetails));
+  };
 
   const openCaptureModal = () => {
     setOpen(!open);
@@ -32,7 +61,7 @@ export default function AccountPage() {
               onClick={openCaptureModal}
             >
               <Image
-                src={profileImage}
+                src={userDetails.profileImage}
                 alt="profile image"
                 width={300}
                 height={300}
@@ -56,9 +85,9 @@ export default function AccountPage() {
                 label="First name"
                 type="text"
                 name="first-name"
-                id="first-name"
-                value=""
-                onChange={() => {}}
+                id="firstName"
+                value={userDetails.firstName}
+                onChange={handleInputChange}
               />
             </div>
 
@@ -67,9 +96,9 @@ export default function AccountPage() {
                 label="Last name"
                 type="text"
                 name="last-name"
-                id="last-name"
-                value=""
-                onChange={() => {}}
+                id="lastName"
+                value={userDetails.lastName}
+                onChange={handleInputChange}
               />
             </div>
 
@@ -98,7 +127,10 @@ export default function AccountPage() {
 
           {/* save changes button  */}
           <div className="flex justify-center lg:justify-start mt-10">
-            <button className="flex items-center justify-center py-3 px-6 text-white bg-orange rounded-md hover:bg-opacity-80 max-w-[500px]">
+            <button
+              className="flex items-center justify-center py-3 px-6 text-white bg-orange rounded-md hover:bg-opacity-80 max-w-[500px]"
+              onClick={handleSaveChanges}
+            >
               Save changes
             </button>
           </div>
@@ -109,7 +141,7 @@ export default function AccountPage() {
       <ProfileCaptureModal
         isOpen={open}
         setIsOpen={openCaptureModal}
-        setProfileImage={setProfileImage}
+        setProfileImage={handleProfileImageChange}
       />
     </div>
   );
