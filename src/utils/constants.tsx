@@ -183,4 +183,11 @@ const authorInfo: Author = {
     "https://images-na.ssl-images-amazon.com/images/I/51Zymoq7UnL._AC_SY400_.jpg",
 };
 
-export { booksList, authorInfo };
+const userInfo = {
+  firstName: "John",
+  lastName: "Doe",
+  email: "john.doe@montra.com",
+  billingStatus: "Pro",
+};
+
+export { booksList, authorInfo, userInfo };

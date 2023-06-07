@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { clsx } from "clsx";
 import { Disclosure } from "@headlessui/react";
 import {
@@ -34,13 +35,14 @@ const NavBar = () => {
     {
       content: (
         <div className="flex items-center justify-center space-x-2 group">
-          <div
-            className="flex-shrink-0 flex items-center justify-center rounded-full h-12 w-12 border-2 border-gray-200 group-hover:border-orange"
-            style={{
-              background: "url('/images/favicon.svg') no-repeat center center",
-              backgroundSize: "cover",
-            }}
-          ></div>
+          <div className="flex-shrink-0 flex items-center justify-center rounded-full p-1 border border-gray-500 group-hover:border-orange bg-gradient-to-r from-gray-300 to-gray-400">
+            <Image
+              src="/images/favicon.svg"
+              width={48}
+              height={48}
+              alt="profile"
+            />
+          </div>
           <div>
             <p className="text-sm font-medium text-gray-700">{firsName}</p>
             <p className="text-sm font-medium text-gray-500">{lastName}</p>
