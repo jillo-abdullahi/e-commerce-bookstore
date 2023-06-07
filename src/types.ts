@@ -16,6 +16,14 @@ type Author = {
   image: string;
 };
 
+type User = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  billingStatus: string;
+  profileImage: string;
+};
+
 type CartItem = {
   id: number;
   quantity: number;
@@ -24,4 +32,4 @@ type CartItem = {
   title: string;
 };
 
-export type { Product, Author, Products };
+export type { Product, Author, Products, CartItem, User };

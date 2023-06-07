@@ -10,17 +10,20 @@ import {
   XMarkIcon,
   ShoppingCartIcon,
 } from "@heroicons/react/24/outline";
+import { useSelector } from "react-redux";
+import { RootState } from "@/state/store";
 
 const NavBar = () => {
   const pathname = usePathname();
+  const {
+    cart,
+    user: { firstName, lastName, profileImage },
+  } = useSelector((state: RootState) => state);
+
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "Products", href: "/products" },
   ];
-
-  // get these from redux store
-  const firsName = "John";
-  const lastName = "Doe";
 
   const navButtons = [
     {
@@ -31,7 +34,7 @@ const NavBar = () => {
             aria-hidden="true"
           />
           <span className="absolute -top-1 -right-1 text-xs font-bold text-white bg-orange rounded-full px-1">
-            0
+            {cart.length}
           </span>
         </div>
       ),
@@ -42,7 +45,7 @@ const NavBar = () => {
         <div className="flex items-center justify-center space-x-2 group">
           <div className="flex-shrink-0 flex items-center justify-center rounded-full border border-gray-500 group-hover:border-orange bg-gradient-to-r from-gray-300 to-gray-400">
             <Image
-              src="/images/favicon.svg"
+              src={profileImage}
               width={48}
               height={48}
               alt="profile"
@@ -50,7 +53,7 @@ const NavBar = () => {
             />
           </div>
           <div>
-            <p className="text-sm font-medium text-gray-700">{firsName}</p>
+            <p className="text-sm font-medium text-gray-700">{firstName}</p>
             <p className="text-sm font-medium text-gray-500">{lastName}</p>
           </div>
         </div>
