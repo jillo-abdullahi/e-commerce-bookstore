@@ -16,4 +16,12 @@ type Author = {
   image: string;
 };
 
+type CartItem = {
+  id: number;
+  quantity: number;
+  price: number;
+  image: string;
+  title: string;
+};
+
 export type { Product, Author, Products };

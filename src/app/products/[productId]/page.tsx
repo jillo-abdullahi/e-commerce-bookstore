@@ -6,6 +6,7 @@ import Image from "next/image";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import { booksList, authorInfo } from "@/utils/constants";
 import { Product } from "@/types";
+import { QuantityButton } from "@/components/Buttons";
 
 export default function ProductItemPage() {
   const [product, setProduct] = useState<Product | null>(null);
@@ -67,29 +68,7 @@ export default function ProductItemPage() {
 
           {/* add to cart button */}
           <div className="flex space-x-2 items-start justify-center sm:justify-start">
-            <div className="isolate inline-flex rounded-md items-center">
-              <button
-                type="button"
-                className="relative inline-flex items-center rounded-l-md bg-gray-100 px-3 py-2 font-semibold text-orange focus:z-10"
-                onClick={() =>
-                  setQuantity((prevState) =>
-                    prevState >= 1 ? prevState - 1 : prevState
-                  )
-                }
-              >
-                -
-              </button>
-              <span className="text-center font-bold w-10 bg-gray-100 h-full py-2 ">
-                {quantity}
-              </span>
-              <button
-                type="button"
-                className="relative -ml-px inline-flex items-center rounded-r-md  border-transparent bg-gray-100 px-3 py-2 font-semibold text-orange focus:z-10 flex-shrink-0"
-                onClick={() => setQuantity(quantity + 1)}
-              >
-                +
-              </button>
-            </div>
+            <QuantityButton quantity={quantity} setQuantity={setQuantity} />
             <button className="flex items-center justify-center space-x-3 rounded-md px-6 py-2 bg-orange hover:bg-opacity-80">
               <ShoppingCartIcon
                 className="block h-4 w-4 text-white"

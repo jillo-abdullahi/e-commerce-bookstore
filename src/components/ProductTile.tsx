@@ -10,7 +10,7 @@ const ProductTile = ({ product }: { product: Product }) => {
         alt={product.title}
         width={400}
         height={600}
-        className="rounded-lg hover:shadow-2xl transition-shadow duration-200 ease-linear shadow-inner"
+        className="rounded-lg shadow card"
       />
     </Link>
   );
