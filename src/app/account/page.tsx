@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, use } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { PencilIcon } from "@heroicons/react/24/outline";
 import { useSelector, useDispatch } from "react-redux";
@@ -39,7 +39,9 @@ export default function AccountPage() {
   };
 
   // push changes to redux store
-  const handleSaveChanges = () => {
+  const handleSaveChanges = (e: React.ChangeEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
     dispatch(updateUser(userDetails));
   };
 
@@ -78,7 +80,7 @@ export default function AccountPage() {
         </div>
 
         {/* profile details */}
-        <div className="lg:col-span-7">
+        <form className="lg:col-span-7" onSubmit={handleSaveChanges}>
           <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="sm:col-span-3">
               <InputField
@@ -86,6 +88,7 @@ export default function AccountPage() {
                 type="text"
                 name="first-name"
                 id="firstName"
+                required={true}
                 value={userDetails.firstName}
                 onChange={handleInputChange}
               />
@@ -97,6 +100,7 @@ export default function AccountPage() {
                 type="text"
                 name="last-name"
                 id="lastName"
+                required={true}
                 value={userDetails.lastName}
                 onChange={handleInputChange}
               />
@@ -128,13 +132,13 @@ export default function AccountPage() {
           {/* save changes button  */}
           <div className="flex justify-center lg:justify-start mt-10">
             <button
+              type="submit"
               className="flex items-center justify-center py-3 px-6 text-white bg-orange rounded-md hover:bg-opacity-80 max-w-[500px]"
-              onClick={handleSaveChanges}
             >
               Save changes
             </button>
           </div>
-        </div>
+        </form>
       </div>
 
       {/* profile image capture modal */}

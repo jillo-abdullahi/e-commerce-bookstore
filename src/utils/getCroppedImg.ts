@@ -29,11 +29,11 @@ function getCroppedImg(imageSrc: string, crop: Crop) {
       crop.height * scaleY,
       0,
       0,
-      crop.width,
-      crop.height
+      crop.width * scaleX,
+      crop.height * scaleY
     );
 
-  // get base64 encoded image that can be sent to the server
+  // get base64 encoded image
   return canvas.toDataURL("image/jpeg");
 }
 

@@ -1,5 +1,5 @@
 import Webcam from "react-webcam";
-import { useRef, useState, useCallback, Dispatch, SetStateAction } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import Image from "next/image";
 import ReactCrop, { type Crop, PixelCrop } from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
@@ -11,7 +11,7 @@ import ModalTitle from "@/components/ModalTitle";
 interface ProfileCaptureModalProps {
   isOpen: boolean;
   setIsOpen: () => void;
-  setProfileImage: Dispatch<SetStateAction<string>>;
+  setProfileImage: (image: string) => void;
 }
 const ProfileCaptureModal: React.FC<ProfileCaptureModalProps> = ({
   isOpen,
@@ -30,6 +30,7 @@ const ProfileCaptureModal: React.FC<ProfileCaptureModalProps> = ({
   };
   const [crop, setCrop] = useState<Crop>(defaultCrop);
   const [imageSrc, setImageSrc] = useState<string | null>("");
+  const [croppedImageSrc, setCroppedImageSrc] = useState<string>("");
 
   // capture the image from the webcam
   const capture = useCallback(() => {
@@ -54,6 +55,23 @@ const ProfileCaptureModal: React.FC<ProfileCaptureModalProps> = ({
     setIsOpen();
   };
 
+  // set default crop area when image is loaded
+  // TODO: fix this
+  useEffect(() => {
+    if (!imageSrc) return;
+
+    const defCrop: Crop = {
+      x: 40,
+      y: 40,
+      width: 320,
+      height: 320,
+      unit: "px",
+    };
+
+    setCroppedImageSrc(getCroppedImg(imageSrc, defCrop));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [imageSrc]);
+
   return (
     <Modal open={isOpen} setOpen={handleClose}>
       <div className="pb-4 bg-gray-200">
@@ -66,17 +84,15 @@ const ProfileCaptureModal: React.FC<ProfileCaptureModalProps> = ({
                 onChange={(percentCrop) => setCrop(percentCrop)}
                 onComplete={(newCrop) => {
                   if (newCrop.width && newCrop.height) {
-                    const croppedImageSrc = getCroppedImg(imageSrc, newCrop);
-
-                    // store the cropped image in state for now
-                    // TODO: upload the cropped image to the server
-                    setProfileImage(croppedImageSrc);
+                    setCroppedImageSrc(getCroppedImg(imageSrc, newCrop));
                   }
                 }}
                 circularCrop={true}
                 aspect={1}
                 minHeight={50}
                 minWidth={50}
+                keepSelection={true}
+                locked={true}
               >
                 <Image
                   src={imageSrc}
@@ -88,7 +104,10 @@ const ProfileCaptureModal: React.FC<ProfileCaptureModalProps> = ({
             </div>
             <button
               className="flex items-center justify-center w-full py-4 text-white bg-orange rounded-md mt-6 hover:bg-opacity-80 max-w-[400px] mx-auto"
-              onClick={handleClose}
+              onClick={() => {
+                setProfileImage(croppedImageSrc);
+                handleClose();
+              }}
             >
               <CameraIcon className="h-4 w-4 text-white mr-2" />
               Set profile photo
