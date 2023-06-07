@@ -41,6 +41,7 @@ const NavBar = () => {
               width={48}
               height={48}
               alt="profile"
+              className="rounded-full"
             />
           </div>
           <div>

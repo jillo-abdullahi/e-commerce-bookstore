@@ -1,6 +1,7 @@
-'use client';
+"use client";
 
 import { Dispatch, SetStateAction } from "react";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 
 interface QuantityButtonProps {
   quantity: number;
@@ -38,4 +39,15 @@ const QuantityButton: React.FC<QuantityButtonProps> = ({
   );
 };
 
-export { QuantityButton };
+const CloseButton: React.FC<{ setIsOpen?: () => void }> = ({ setIsOpen }) => {
+  return (
+    <button
+      className="group rounded-full bg-gray-100 p-2 hover:bg-red-500"
+      onClick={setIsOpen && setIsOpen}
+    >
+      <XMarkIcon className="h-4 w-4 text-gray-900 group-hover:text-white" />
+    </button>
+  );
+};
+
+export { QuantityButton, CloseButton };

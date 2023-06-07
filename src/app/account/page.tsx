@@ -4,11 +4,18 @@ import { useState } from "react";
 import InputField from "@/components/InputField";
 import Image from "next/image";
 import { PencilIcon } from "@heroicons/react/24/outline";
+import ProfileCaptureModal from "@/containers/ProfileCaptureModal";
 
 export default function AccountPage() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [profileImage, setProfileImage] = useState("/images/favicon.svg");
+
+  const [open, setOpen] = useState(false);
+
+  const openCaptureModal = () => {
+    setOpen(!open);
+  };
 
   return (
     <div className="container mx-auto pt-12 pb-24 max-w-[1015px]">
@@ -19,15 +26,18 @@ export default function AccountPage() {
         {/* profile image  */}
         <div className="lg:col-span-4">
           <div className="flex flex-col items-start justify-center h-full">
-            <div className="relative rounded-full bg-gradient-to-r from-gray-300 to-gray-400 border-gray-500 border p-6">
+            <div className="relative rounded-full bg-gradient-to-r from-gray-300 to-gray-400 border-gray-500 border">
               <Image
                 src={profileImage}
                 alt="profile image"
-                width={200}
-                height={200}
+                width={300}
+                height={300}
                 className="rounded-full"
               />
-              <button className="absolute group bottom-5 right-5 bg-gray-100 rounded-full p-2 hover:bg-orange">
+              <button
+                className="absolute group bottom-5 right-5 bg-gray-100 rounded-full p-2 hover:bg-orange"
+                onClick={openCaptureModal}
+              >
                 <PencilIcon className="h-4 w-4 text-orange group-hover:text-white" />
               </button>
             </div>
@@ -83,6 +93,13 @@ export default function AccountPage() {
           </div>
         </div>
       </div>
+
+      {/* profile capture modal */}
+      <ProfileCaptureModal
+        isOpen={open}
+        setIsOpen={openCaptureModal}
+        setProfileImage={setProfileImage}
+      />
     </div>
   );
 }
