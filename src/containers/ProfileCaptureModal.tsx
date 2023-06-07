@@ -19,6 +19,8 @@ const ProfileCaptureModal: React.FC<ProfileCaptureModalProps> = ({
   setProfileImage,
 }) => {
   const webcamRef = useRef<Webcam>(null);
+
+  // default crop area size as a percentage of the image size
   const [crop, setCrop] = useState<Crop>({
     unit: "%",
     x: 10,
@@ -26,9 +28,9 @@ const ProfileCaptureModal: React.FC<ProfileCaptureModalProps> = ({
     width: 80,
     height: 80,
   });
-  const [completedCrop, setCompletedCrop] = useState<PixelCrop>();
   const [imageSrc, setImageSrc] = useState<string | null>("");
 
+  // capture the image from the webcam
   const capture = useCallback(() => {
     if (!webcamRef.current) return;
     const imageSrc = webcamRef.current.getScreenshot();
@@ -55,7 +57,6 @@ const ProfileCaptureModal: React.FC<ProfileCaptureModalProps> = ({
                 crop={crop}
                 onChange={(percentCrop) => setCrop(percentCrop)}
                 onComplete={(newCrop) => {
-                  setCompletedCrop(newCrop);
                   if (newCrop.width && newCrop.height) {
                     const croppedImageSrc = getCroppedImg(imageSrc, newCrop);
 

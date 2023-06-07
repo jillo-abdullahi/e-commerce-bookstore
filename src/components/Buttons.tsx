@@ -42,7 +42,7 @@ const QuantityButton: React.FC<QuantityButtonProps> = ({
 const CloseButton: React.FC<{ setIsOpen?: () => void }> = ({ setIsOpen }) => {
   return (
     <button
-      className="group rounded-full bg-gray-100 p-2 hover:bg-red-500"
+      className="group rounded-full bg-gray-100 p-2 hover:bg-orange transition-all duration-200 ease-linear"
       onClick={setIsOpen && setIsOpen}
     >
       <XMarkIcon className="h-4 w-4 text-gray-900 group-hover:text-white" />

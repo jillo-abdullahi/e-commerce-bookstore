@@ -24,7 +24,7 @@ export default function AccountPage() {
       </h1>
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 lg:gap-x-2">
         {/* profile image  */}
-        <div className="lg:col-span-4">
+        <div className="lg:col-span-5">
           <div className="flex flex-col items-start justify-center h-full">
             <div className="relative rounded-full bg-gradient-to-r from-gray-300 to-gray-400 border-gray-500 border">
               <Image
@@ -32,7 +32,7 @@ export default function AccountPage() {
                 alt="profile image"
                 width={300}
                 height={300}
-                className="rounded-full"
+                className="rounded-full border-orange-100 border-4"
               />
               <button
                 className="absolute group bottom-5 right-5 bg-gray-100 rounded-full p-2 hover:bg-orange"
@@ -45,7 +45,7 @@ export default function AccountPage() {
         </div>
 
         {/* profile details */}
-        <div className="lg:col-span-8">
+        <div className="lg:col-span-7">
           <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="sm:col-span-3">
               <InputField
