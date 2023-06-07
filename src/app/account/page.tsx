@@ -26,7 +26,7 @@ export default function AccountPage() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 lg:gap-x-2">
         {/* profile image  */}
         <div className="lg:col-span-5">
-          <div className="flex flex-col items-start justify-center h-full">
+          <div className="flex flex-col items-center lg:items-start justify-center h-full pb-10 lg:pb-0">
             <div
               className="relative rounded-full bg-gradient-to-r from-gray-300 to-gray-400 border-gray-500 border cursor-pointer"
               onClick={openCaptureModal}
@@ -97,15 +97,15 @@ export default function AccountPage() {
           </div>
 
           {/* save changes button  */}
-          <div className="flex justify-start mt-10">
-            <button className="flex items-center justify-center py-3 px-6 text-white bg-orange rounded-md hover:bg-opacity-80 max-w-[400px]">
+          <div className="flex justify-center lg:justify-start mt-10">
+            <button className="flex items-center justify-center py-3 px-6 text-white bg-orange rounded-md hover:bg-opacity-80 max-w-[500px]">
               Save changes
             </button>
           </div>
         </div>
       </div>
 
-      {/* profile capture modal */}
+      {/* profile image capture modal */}
       <ProfileCaptureModal
         isOpen={open}
         setIsOpen={openCaptureModal}

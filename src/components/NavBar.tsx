@@ -25,23 +25,28 @@ const NavBar = () => {
   const navButtons = [
     {
       content: (
-        <ShoppingCartIcon
-          className="block h-8 w-8 transition-colors duration-100 ease-linear text-gray-500 hover:text-gray-900"
-          aria-hidden="true"
-        />
+        <div className="relative">
+          <ShoppingCartIcon
+            className="block h-8 w-8 transition-colors duration-100 ease-linear text-gray-500 hover:text-gray-900"
+            aria-hidden="true"
+          />
+          <span className="absolute -top-1 -right-1 text-xs font-bold text-white bg-orange rounded-full px-1">
+            0
+          </span>
+        </div>
       ),
       href: "/cart",
     },
     {
       content: (
         <div className="flex items-center justify-center space-x-2 group">
-          <div className="flex-shrink-0 flex items-center justify-center rounded-full p-1 border border-gray-500 group-hover:border-orange bg-gradient-to-r from-gray-300 to-gray-400">
+          <div className="flex-shrink-0 flex items-center justify-center rounded-full border border-gray-500 group-hover:border-orange bg-gradient-to-r from-gray-300 to-gray-400">
             <Image
               src="/images/favicon.svg"
               width={48}
               height={48}
               alt="profile"
-              className="rounded-full"
+              className="rounded-full border-orange-100 border-2"
             />
           </div>
           <div>
