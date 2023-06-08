@@ -27,7 +27,7 @@ export default function ThreeCanvas() {
     // create cube and load image texture
     const geometry = new THREE.BoxGeometry(3.5, 3.5, 3.5);
     const loader = new THREE.TextureLoader();
-    const texture = loader.load("/images/author.png");
+    const texture = loader.load(authorInfo.image);
 
     // canvas element for author description
     const canvas = document.createElement("canvas");

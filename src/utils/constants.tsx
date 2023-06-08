@@ -183,8 +183,8 @@ const booksList: Products = {
 const authorInfo: Author = {
   name: "J. K. Rowling",
   bio: "J.K. Rowling, born July 31, 1965, is a British author, philanthropist, film producer, and screenwriter. She gained global fame as the creator of the beloved Harry Potter series, which has sold over 500 million copies worldwide and translated into numerous languages. The series' enchanting tales of wizardry have inspired a multimedia franchise, consisting of films, plays, and spin-off books. Rowling's journey to success wasn't smooth; she penned the initial Harry Potter ideas as a financially struggling single mother. Overcoming adversities, she is now one of the wealthiest authors in the world. Despite her wealth, Rowling is well-known for her philanthropic endeavors, significantly contributing to charities such as Comic Relief and her own Lumos. Recently, she has written under the pseudonym Robert Galbraith, creating a new series centered around the detective Cormoran Strike. Her creativity continues to captivate audiences worldwide, making a significant impact in contemporary literature.",
-  image:
-    "https://images-na.ssl-images-amazon.com/images/I/51Zymoq7UnL._AC_SY400_.jpg",
+  image: "/images/author.png",
+  link: "https://en.wikipedia.org/wiki/J._K._Rowling",
 };
 
 export { booksList, authorInfo };

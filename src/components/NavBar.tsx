@@ -42,7 +42,11 @@ const NavBar = () => {
     },
     {
       content: (
-        <div className="flex items-center justify-center space-x-2 group">
+        <div className="flex items-center justify-center space-x-4 group">
+          <div className="max-w-[80px]">
+            <p className="text-sm font-medium text-gray-700 truncate">{firstName}</p>
+            <p className="text-sm font-medium text-gray-500 truncate">{lastName}</p>
+          </div>
           <div className="flex-shrink-0 flex items-center justify-center rounded-full border border-gray-500 group-hover:border-orange bg-gradient-to-r from-gray-300 to-gray-400">
             <Image
               src={profileImage}
@@ -51,10 +55,6 @@ const NavBar = () => {
               alt="profile"
               className="rounded-full border-orange-100 border-2"
             />
-          </div>
-          <div>
-            <p className="text-sm font-medium text-gray-700">{firstName}</p>
-            <p className="text-sm font-medium text-gray-500">{lastName}</p>
           </div>
         </div>
       ),
