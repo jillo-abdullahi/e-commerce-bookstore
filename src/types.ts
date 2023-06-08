@@ -4,6 +4,7 @@ type Product = {
   description: string | JSX.Element;
   price: number;
   image: string;
+  quantity: number;
 };
 
 type Products = {
@@ -24,12 +25,4 @@ type User = {
   profileImage: string;
 };
 
-type CartItem = {
-  id: number;
-  quantity: number;
-  price: number;
-  image: string;
-  title: string;
-};
-
-export type { Product, Author, Products, CartItem, User };
+export type { Product, Author, Products, User };

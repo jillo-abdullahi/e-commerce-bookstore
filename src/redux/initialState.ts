@@ -1,6 +1,14 @@
-import { CartItem, User } from "@/types";
+import { Products, User } from "@/types";
 
-const cartInitialState: CartItem[] = [];
+const cartInitialState: {
+  productsInCart: Products;
+  loading: boolean;
+  error: string;
+} = {
+  productsInCart: {},
+  loading: false,
+  error: "",
+};
 
 const userInitialState: User = {
   firstName: "Ronald",

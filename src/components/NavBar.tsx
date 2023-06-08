@@ -16,7 +16,7 @@ import { RootState } from "@/redux/store";
 const NavBar = () => {
   const pathname = usePathname();
   const {
-    cart,
+    cart: { productsInCart },
     user: { firstName, lastName, profileImage },
   } = useSelector((state: RootState) => state);
 
@@ -34,7 +34,7 @@ const NavBar = () => {
             aria-hidden="true"
           />
           <span className="absolute -top-1 -right-1 text-xs font-bold text-white bg-orange rounded-full px-1">
-            {cart.length}
+            {Object.keys(productsInCart).length}
           </span>
         </div>
       ),

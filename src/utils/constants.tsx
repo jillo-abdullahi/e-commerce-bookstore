@@ -42,6 +42,7 @@ const booksList: Products = {
     ),
     price: 18.99,
     image: "book-4.jpeg",
+    quantity: 1,
   },
   2: {
     id: 2,
@@ -90,6 +91,7 @@ const booksList: Products = {
     ),
     price: 15.99,
     image: "book-3.jpeg",
+    quantity: 1,
   },
   3: {
     id: 3,
@@ -132,6 +134,7 @@ const booksList: Products = {
     ),
     price: 18.99,
     image: "book-2.jpeg",
+    quantity: 1,
   },
   4: {
     id: 4,
@@ -173,6 +176,7 @@ const booksList: Products = {
     ),
     price: 12.99,
     image: "book-1.jpeg",
+    quantity: 1,
   },
 };
 
@@ -183,11 +187,4 @@ const authorInfo: Author = {
     "https://images-na.ssl-images-amazon.com/images/I/51Zymoq7UnL._AC_SY400_.jpg",
 };
 
-const userInfo = {
-  firstName: "John",
-  lastName: "Doe",
-  email: "john.doe@montra.com",
-  billingStatus: "Pro",
-};
-
-export { booksList, authorInfo, userInfo };
+export { booksList, authorInfo };

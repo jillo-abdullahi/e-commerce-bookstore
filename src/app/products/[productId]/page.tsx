@@ -1,29 +1,44 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import clsx from "clsx";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { RootState } from "@/redux/store";
+import { useSelector, useDispatch } from "react-redux";
+import { addToCart, loadingCart } from "@/redux/slices/cartSlice";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import { booksList, authorInfo } from "@/utils/constants";
 import { Product } from "@/types";
 import { QuantityButton } from "@/components/Buttons";
 
 export default function ProductItemPage() {
+  const dispatch = useDispatch();
+  const { productsInCart, loading, error } = useSelector(
+    (state: RootState) => state.cart
+  );
   const [product, setProduct] = useState<Product | null>(null);
-
-  // todo: move this to the context API since we need this from the cart page as well
   const [quantity, setQuantity] = useState(1);
+
   const productId = parseInt(usePathname().split("/")[2]);
 
   useEffect(() => {
     // fetch product data from books list
     const product = booksList[productId];
     if (!product) {
-      // todo: redirect to 404 page
+      // TODO: redirect to 404 page
       window.location.href = "/404";
     }
     setProduct(product);
   }, [productId]);
+
+  const addItemToCart = () => {
+    dispatch(loadingCart(true));
+    if (product) {
+      dispatch(addToCart({ ...product, quantity }));
+    }
+    dispatch(loadingCart(false));
+  };
 
   return (
     <div className="container mx-auto max-w-[1015px] pt-12 pb-24">
@@ -69,11 +84,29 @@ export default function ProductItemPage() {
           {/* add to cart button */}
           <div className="flex space-x-2 items-start justify-center sm:justify-start">
             <QuantityButton quantity={quantity} setQuantity={setQuantity} />
-            <button className="flex items-center justify-center space-x-3 rounded-md px-6 py-2 bg-orange hover:bg-opacity-80">
-              <ShoppingCartIcon
-                className="block h-4 w-4 text-white"
-                aria-hidden="true"
-              />
+            <button
+              className={clsx(
+                "flex items-center justify-center space-x-3 rounded-md px-6 py-2 bg-orange hover:bg-opacity-80",
+                quantity < 1
+                  ? "opacity-50 cursor-not-allowed"
+                  : "cursor-pointer"
+              )}
+              onClick={addItemToCart}
+              disabled={quantity < 1}
+            >
+              {loading ? (
+                <Image
+                  src="/images/spinner.svg"
+                  alt="loading"
+                  width={16}
+                  height={16}
+                />
+              ) : (
+                <ShoppingCartIcon
+                  className="block h-4 w-4 text-white"
+                  aria-hidden="true"
+                />
+              )}
               <span className="text-white font-bold">Add to cart</span>
             </button>
           </div>
