@@ -3,7 +3,7 @@ import { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
-import { QuantityButton } from "@/components/Buttons";
+import { QuantityButton } from "@/app/shared/Buttons";
 import { Product } from "@/types";
 
 interface ProductRightContentProps {

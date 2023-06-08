@@ -3,7 +3,7 @@ import clsx from "clsx";
 import ReactCrop, { Crop } from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
 import { CameraIcon } from "@heroicons/react/24/outline";
-import ModalTitle from "@/components/ModalTitle";
+import ModalTitle from "@/app/shared/ModalTitle";
 import getCroppedImg from "@/utils/getCroppedImg";
 import { videoConstraints } from "@/app/account/components/ProfileCaptureModal";
 

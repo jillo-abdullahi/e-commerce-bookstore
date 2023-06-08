@@ -1,5 +1,5 @@
 import Image from "next/image";
-import BackToProducts from "@/components/BackToProducts";
+import BackToProducts from "@/app/shared/BackToProducts";
 
 const Product404State: React.FC = () => {
   return (

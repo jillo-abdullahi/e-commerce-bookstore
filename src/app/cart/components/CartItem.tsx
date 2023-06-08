@@ -2,8 +2,8 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useDispatch } from "react-redux";
-import ColumnItem from "@/components/ColumnItem";
-import { QuantityButton } from "@/components/Buttons";
+import ColumnItem from "@/app/shared/ColumnItem";
+import { QuantityButton } from "@/app/shared/Buttons";
 import { Product } from "@/types";
 import {
   addToCart,

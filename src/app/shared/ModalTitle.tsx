@@ -1,4 +1,4 @@
-import { CloseButton } from "@/components/Buttons";
+import { CloseButton } from "@/app/shared/Buttons";
 
 interface ModalTitleProps {
   title: string;

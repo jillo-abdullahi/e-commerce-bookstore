@@ -4,8 +4,8 @@ import { usePathname } from "next/navigation";
 import { clsx } from "clsx";
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import NavBarButtons from "@/components/navBar/NavBarButtons";
-import NavBarLinks, { navLinks } from "@/components/navBar/NavBarLinks";
+import NavBarButtons from "@/app/navBar/NavBarButtons";
+import NavBarLinks, { navLinks } from "@/app/navBar/NavBarLinks";
 
 const NavBar = () => {
   const pathname = usePathname();

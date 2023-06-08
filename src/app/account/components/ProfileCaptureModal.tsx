@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { type Crop } from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
-import { Modal } from "@/components/Modal";
+import { Modal } from "@/app/shared/Modal";
 import CropPhotoContent from "@/app/account/components/CropPhotoContent";
 import PhotoCaptureContent from "@/app/account/components/PhotoCaptureContent";
 

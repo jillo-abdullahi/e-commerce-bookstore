@@ -1,6 +1,6 @@
 import { useRef, useState, useCallback, useEffect } from "react";
 import Webcam from "react-webcam";
-import ModalTitle from "@/components/ModalTitle";
+import ModalTitle from "@/app/shared/ModalTitle";
 import { CameraIcon } from "@heroicons/react/24/outline";
 import { videoConstraints } from "@/app/account/components/ProfileCaptureModal";
 

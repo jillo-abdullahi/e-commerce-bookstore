@@ -3,7 +3,7 @@
 import CartContainer from "@/app/cart/components/CartContainer";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
-import BackToProducts from "@/components/BackToProducts";
+import BackToProducts from "@/app/shared/BackToProducts";
 import CartEmptyState from "@/app/cart/components/CartEmptyState";
 
 export default function CartPage() {

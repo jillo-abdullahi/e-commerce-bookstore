@@ -1,6 +1,6 @@
 import "./globals.css";
 import { Kumbh_Sans } from "next/font/google";
-import NavBar from "@/components/navBar/NavBar";
+import NavBar from "@/app/navBar/NavBar";
 import { Providers } from "@/redux/provider";
 
 const kumbh_Sans = Kumbh_Sans({

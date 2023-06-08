@@ -14,7 +14,7 @@ import { isEmpty } from "lodash";
 import {
   ToastNotification,
   emitterSettings,
-} from "@/components/ToastNotification";
+} from "@/app/shared/ToastNotification";
 import Link from "next/link";
 import Product404State from "@/app/products/components/Product404State";
 import ProductRightContent from "@/app/products/components/ProductRightContent";

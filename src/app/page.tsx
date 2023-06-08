@@ -1,6 +1,6 @@
 "use client";
 
-import ThreeDCube from "@/components/ThreeDCube";
+import ThreeDCube from "@/app/home/ThreeDCube";
 import { authorInfo } from "@/utils/constants";
 
 export default function HomePage() {
