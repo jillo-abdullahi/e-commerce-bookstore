@@ -19,15 +19,16 @@ const CartItem: React.FC<CartItemProps> = ({ product }) => {
   const dispatch = useDispatch();
   const [itemQuantity, setItemQuantity] = useState(product.quantity);
 
-  // change item quanity in cart
+  // change item quantity in cart
   useEffect(() => {
-    dispatch(loadingCart(true));
     dispatch(addToCart({ ...product, quantity: itemQuantity }));
-    dispatch(loadingCart(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [itemQuantity]);
 
   const { price, quantity, title, image, id } = product;
+  const totalPrice = (quantity * price).toLocaleString("en-US", {
+    maximumFractionDigits: 2,
+  });
 
   return (
     <div className="border-b border-gray-200 grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-4 py-6">
@@ -50,11 +51,7 @@ const CartItem: React.FC<CartItemProps> = ({ product }) => {
             <span className="text-gray-600">{`$${price}`}</span>
             <span className="text-gray-600 text-sm px-1">x</span>
             <span className="text-gray-600">{quantity}</span>
-            <span className="text-gray-900 pl-2 font-bold">{`$${(
-              quantity * price
-            )
-              .toFixed(2)
-              .toLocaleString()}`}</span>
+            <span className="text-gray-900 pl-2 font-bold">{`$${totalPrice}`}</span>
           </div>
         </div>
       </div>
@@ -80,9 +77,7 @@ const CartItem: React.FC<CartItemProps> = ({ product }) => {
         <ColumnItem>
           <div className="flex items-center justify-start font-bold">
             <span className="text-gray-700">$</span>
-            <span className="text-gray-900">
-              {(quantity * price).toFixed(2).toLocaleString()}
-            </span>
+            <span className="text-gray-900">{totalPrice}</span>
           </div>
         </ColumnItem>
       </div>

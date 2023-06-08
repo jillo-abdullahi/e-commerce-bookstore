@@ -15,6 +15,7 @@ const cartSlice = createSlice({
         } else {
           state.productsInCart[id] = action.payload;
         }
+
         state.error = "";
       } catch (error) {
         state.error = "An error occurred while adding to cart";
@@ -23,6 +24,7 @@ const cartSlice = createSlice({
     },
     removeFromCart: (state, action: PayloadAction<number>) => {
       const id = action.payload;
+
       try {
         delete state.productsInCart[id];
         state.error = "";

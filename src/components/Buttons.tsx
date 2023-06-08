@@ -19,7 +19,7 @@ const QuantityButton: React.FC<QuantityButtonProps> = ({
         className="relative inline-flex items-center rounded-l-md bg-gray-100 px-3 py-2 font-semibold text-orange focus:z-10"
         onClick={() =>
           setQuantity((prevState) =>
-            prevState >= 1 ? prevState - 1 : prevState
+            prevState >= 2 ? prevState - 1 : prevState
           )
         }
       >
@@ -31,7 +31,7 @@ const QuantityButton: React.FC<QuantityButtonProps> = ({
       <button
         type="button"
         className="relative -ml-px inline-flex items-center rounded-r-md  border-transparent bg-gray-100 px-3 py-2 font-semibold text-orange focus:z-10 flex-shrink-0"
-        onClick={() => setQuantity(quantity + 1)}
+        onClick={() => setQuantity((prevState) => prevState + 1)}
       >
         +
       </button>

@@ -21,7 +21,7 @@ import { toast } from "react-toastify";
 
 export default function ProductItemPage() {
   const dispatch = useDispatch();
-  const { productsInCart, loading, error } = useSelector(
+  const { productsInCart, loading } = useSelector(
     (state: RootState) => state.cart
   );
   const [product, setProduct] = useState<Product | null>(null);
@@ -41,8 +41,8 @@ export default function ProductItemPage() {
     }
   }, [productsInCart, productId]);
 
+  // fetch product data from books list
   useEffect(() => {
-    // fetch product data from books list
     const product = booksList[productId];
     if (!product) {
       // TODO: redirect to 404 page
@@ -51,13 +51,12 @@ export default function ProductItemPage() {
     setProduct(product);
   }, [productId]);
 
-  const notify = () => {
-    toast.success(
-      `${productIsInCart ? "Product updated" : "Product added to cart"}`,
-      emitterSettings
-    );
+  // succes notification
+  const notify = (text: string) => {
+    toast.success(text, emitterSettings);
   };
 
+  // add item to cart
   const addItemToCart = () => {
     dispatch(loadingCart(true));
     if (product) {
@@ -65,8 +64,7 @@ export default function ProductItemPage() {
     }
     dispatch(loadingCart(false));
 
-    // show toast notification
-    notify();
+    notify(`${productIsInCart ? "Product updated" : "Product added to cart"}`);
   };
 
   return (
@@ -116,15 +114,16 @@ export default function ProductItemPage() {
               quantity={itemQuantity}
               setQuantity={setItemQuantity}
             />
+
             <button
               className={clsx(
                 "flex items-center justify-center space-x-3 rounded-md px-6 py-2 bg-orange hover:bg-opacity-80",
-                itemQuantity < 1
+                itemQuantity === 0
                   ? "opacity-50 cursor-not-allowed"
                   : "cursor-pointer"
               )}
               onClick={addItemToCart}
-              disabled={itemQuantity < 1}
+              disabled={itemQuantity === 0}
             >
               {loading ? (
                 <Image
