@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100;400;500&display=swap");
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(

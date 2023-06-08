@@ -42,7 +42,9 @@ export default function ThreeCanvas() {
     context.fillStyle = "#FFEEE2";
     context.fillRect(0, 0, canvas.width, canvas.height);
 
-    context.font = "34px Arial";
+    context.font = "34px Kumbh Sans, sans-serif";
+
+    // text should be black
     context.fillStyle = "black";
     wrapCanvasText(context, description, 50, 80, 924, 50);
 
@@ -51,7 +53,7 @@ export default function ThreeCanvas() {
     // create materials using author image and description
     const material1 = new THREE.MeshBasicMaterial({
       map: texture,
-      color: "#FFEEE2",
+      color: "#FFF8F2",
     });
     const material2 = new THREE.MeshBasicMaterial({ map: descTexture });
     const material3 = new THREE.MeshBasicMaterial({ color: "#FFEEE2" });
