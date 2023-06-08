@@ -42,7 +42,7 @@ const NavBar = () => {
     },
     {
       content: (
-        <div className="flex items-center justify-center space-x-4 group">
+        <div className="flex items-center justify-center space-x-3 group">
           <div className="max-w-[80px]">
             <p className="text-sm font-medium text-gray-700 truncate">{firstName}</p>
             <p className="text-sm font-medium text-gray-500 truncate">{lastName}</p>
