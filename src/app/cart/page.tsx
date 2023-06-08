@@ -1,6 +1,6 @@
 "use client";
 
-import CartContainer from "@/app/cart/containers/CartContainer";
+import CartContainer from "@/app/cart/components/CartContainer";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import BackToProducts from "@/components/BackToProducts";

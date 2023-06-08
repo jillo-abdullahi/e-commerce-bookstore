@@ -1,4 +1,4 @@
-import ProductTile from "@/components/ProductTile";
+import ProductTile from "@/app/products/components/ProductTile";
 import { booksList } from "@/utils/constants";
 import { authorInfo } from "@/utils/constants";
 
