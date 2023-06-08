@@ -1,34 +1,67 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+﻿# Toms Without Scrolls
+
+Toms Without Scrolls is a single-page e-commerce bookstore application showcasing the works of a selected author.
+
+You can preview the live application here: [Toms Without Scrolls Live](https://e-commerce-bookstore-gamma.vercel.app/)
+
+## Features
+
+- **Author Selection and Home Page:** The homepage displays a 3D cube highlighting the chosen author with Three.js. The cube has an image of the author on the front and a 150-word description of the author's works and life on the back. The user can rotate the cube to view the description.
+
+- **Navigation:** The application includes a navigation bar at the top of the page for easy access to all sections, including Home, Products, Cart, Account, and Item pages.
+
+- **Products Page and Item Pages:** The Products page displays clickable tiles, each featuring a book cover thumbnail. Four item pages are dedicated to specific books, each containing the title, author, price, quantity, thumbnail, and product description.
+
+- **Account Page:** Users can view and modify their account details. Fields include first name, last name, email, billing status, and profile image. Users can update their profile image via their webcam and modify their first and last names.
+
+- **Data Management:** Redux is used for state management, creating and managing two data slices: "Cart" and "Profile". The "Cart" stores information such as total-price and total-quantity, while "Profile" stores the current and updated user first-name, last-name, and profile-image-url. Users can adjust the quantity of a book in the cart and on the item page.
+
+- **Responsive Design:** The layout is responsive and optimized for desktop screens with a minimum width of 950px.
+
+- **Styling:** Tailwind CSS is used to create a cohesive light theme design across all pages. This theme is also incorporated into the homepage canvas.
 
 ## Getting Started
 
-First, run the development server:
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+### Prerequisites
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Node.js
+- npm
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Installing
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Clone the repo
+    ```bash
+    git clone https://github.com/jillo-abdullahi/e-commerce-bookstore.git
+    ```
+2. Switch to the app directory
+	``` bash
+	cd e-commerce-bookstore
+	```
+3. Install NPM packages
+    ```bash
+    npm install
+    ```
+4. Start the development server
+    ```bash
+    npm run dev
+    ```
 
-## Learn More
+## Built With
 
-To learn more about Next.js, take a look at the following resources:
+- [React](https://reactjs.org/)
+- [Redux](https://redux.js.org/)
+- [Redux Toolkit](https://redux-toolkit.js.org/)
+- [Three.js](https://threejs.org/)
+- [Next.js](https://nextjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Authors
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- [Jillo Woche](https://github.com/jillo-abdullahi)
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This project is licensed under the MIT License.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
