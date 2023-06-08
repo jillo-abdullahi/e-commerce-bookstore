@@ -5,6 +5,7 @@ import Link from "next/link";
 import CartItem from "@/components/CartItem";
 import CartSummary from "@/components/CartSummary";
 
+
 export default function CartPage() {
   return (
     <div className="container mx-auto pt-12 pb-24">
@@ -35,6 +36,7 @@ export default function CartPage() {
           </div>
           <CartItem />
           <CartItem />
+  
         </div>
         {/* cart summary */}
         <div className="lg:col-span-4">
