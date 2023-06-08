@@ -2,9 +2,10 @@ import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { authorInfo } from "@/utils/constants";
+import wrapCanvasText from "@/utils/wrapCanvasText";
 
 export default function ThreeCanvas() {
-  const canvasRef = useRef(null);
+  const canvasRef = useRef<HTMLDivElement>(null);
   const description = authorInfo.bio;
 
   useEffect(() => {
@@ -20,12 +21,15 @@ export default function ThreeCanvas() {
     renderer.setClearColor(0xffffff);
     renderer.setSize(window.innerWidth, window.innerHeight);
 
+    // add controls so we can pan around with the mouse.
     new OrbitControls(camera, renderer.domElement);
 
+    // create cube and load image texture
     const geometry = new THREE.BoxGeometry(3.5, 3.5, 3.5);
     const loader = new THREE.TextureLoader();
     const texture = loader.load("/images/author.png");
 
+    // canvas element for author description
     const canvas = document.createElement("canvas");
     canvas.width = 1024;
     canvas.height = 1024;
@@ -40,9 +44,11 @@ export default function ThreeCanvas() {
 
     context.font = "34px Arial";
     context.fillStyle = "black";
-    context.wrapText(description, 50, 80, 924, 50);
+    wrapCanvasText(context, description, 50, 80, 924, 50);
 
     const descTexture = new THREE.CanvasTexture(canvas);
+
+    // create materials using author image and description
     const material1 = new THREE.MeshBasicMaterial({
       map: texture,
       color: "#FFEEE2",
@@ -59,13 +65,14 @@ export default function ThreeCanvas() {
       material2,
     ]);
 
-    // Rotate the cube slightly on the X and Y axes
-    // cube.rotation.x = Math.PI / 8; // 22.5 degrees
+    // rotate the cube slightly on the Y axis
+    // so we can see the 3D-ness of it on load
     cube.rotation.y = Math.PI / 6; // about 30 degrees
 
     scene.add(cube);
 
-    // Create a wireframe to highlight the edges of the cube
+    // create a wireframe to highlight the edges of the cube
+    // TODO: figure out how to make this look better
     const edges = new THREE.EdgesGeometry(geometry);
     const line = new THREE.LineSegments(
       edges,
@@ -87,7 +94,7 @@ export default function ThreeCanvas() {
     };
 
     window.addEventListener("resize", onWindowResize, false);
-    canvasRef.current.appendChild(renderer.domElement);
+    canvasRef.current && canvasRef.current.appendChild(renderer.domElement);
 
     animate();
 
@@ -98,30 +105,3 @@ export default function ThreeCanvas() {
 
   return <div ref={canvasRef} />;
 }
-
-CanvasRenderingContext2D.prototype.wrapText = function (
-  text,
-  x,
-  y,
-  maxWidth,
-  lineHeight
-) {
-  const words = text.split(" ");
-  let line = "";
-
-  for (let n = 0; n < words.length; n++) {
-    const testLine = line + words[n] + " ";
-    const metrics = this.measureText(testLine);
-    const testWidth = metrics.width;
-
-    if (testWidth > maxWidth && n > 0) {
-      this.fillText(line, x, y);
-      line = words[n] + " ";
-      y += lineHeight;
-    } else {
-      line = testLine;
-    }
-  }
-
-  this.fillText(line, x, y);
-};
