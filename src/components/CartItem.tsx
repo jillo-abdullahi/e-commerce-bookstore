@@ -10,6 +10,7 @@ import {
   loadingCart,
   removeFromCart,
 } from "@/redux/slices/cartSlice";
+import Link from "next/link";
 
 interface CartItemProps {
   product: Product;
@@ -22,22 +23,25 @@ const CartItem: React.FC<CartItemProps> = ({ product }) => {
   useEffect(() => {
     dispatch(loadingCart(true));
     dispatch(addToCart({ ...product, quantity: itemQuantity }));
+    dispatch(loadingCart(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [itemQuantity]);
 
-  const { price, quantity, title, image } = product;
+  const { price, quantity, title, image, id } = product;
 
   return (
     <div className="border-b border-gray-200 grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-4 py-6">
       <div className="flex items-center justify-start space-x-3 col-span-2">
         <div className="flex items-center justify-start">
-          <Image
-            src={`/images/${image}`}
-            width={100}
-            height={150}
-            alt="thumbnail"
-            className="rounded-md"
-          />
+          <Link href={`/products/${id}`}>
+            <Image
+              src={`/images/${image}`}
+              width={100}
+              height={150}
+              alt="thumbnail"
+              className="rounded-md"
+            />
+          </Link>
         </div>
         <div className="text-gray-900 text-left">
           <p className="text-gray-900">{title}</p>

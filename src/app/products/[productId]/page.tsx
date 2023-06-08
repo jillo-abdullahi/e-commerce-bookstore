@@ -11,6 +11,13 @@ import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import { booksList, authorInfo } from "@/utils/constants";
 import { Product } from "@/types";
 import { QuantityButton } from "@/components/Buttons";
+import { isEmpty } from "lodash";
+import {
+  ToastNotification,
+  emitterSettings,
+} from "@/components/ToastNotification";
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 export default function ProductItemPage() {
   const dispatch = useDispatch();
@@ -18,9 +25,21 @@ export default function ProductItemPage() {
     (state: RootState) => state.cart
   );
   const [product, setProduct] = useState<Product | null>(null);
-  const [quantity, setQuantity] = useState(1);
+  const [itemQuantity, setItemQuantity] = useState(1);
+  const [productIsInCart, setProductIsInCart] = useState(false);
 
   const productId = parseInt(usePathname().split("/")[2]);
+
+  // set quantity to corresponding value in cart
+  useEffect(() => {
+    if (isEmpty(productsInCart) || !productId) return;
+
+    if (productsInCart[productId]) {
+      setProductIsInCart(true);
+      const quantityInCart = productsInCart[productId]?.quantity;
+      setItemQuantity(quantityInCart || 1);
+    }
+  }, [productsInCart, productId]);
 
   useEffect(() => {
     // fetch product data from books list
@@ -32,12 +51,22 @@ export default function ProductItemPage() {
     setProduct(product);
   }, [productId]);
 
+  const notify = () => {
+    toast.success(
+      `${productIsInCart ? "Product updated" : "Product added to cart"}`,
+      emitterSettings
+    );
+  };
+
   const addItemToCart = () => {
     dispatch(loadingCart(true));
     if (product) {
-      dispatch(addToCart({ ...product, quantity }));
+      dispatch(addToCart({ ...product, quantity: itemQuantity }));
     }
     dispatch(loadingCart(false));
+
+    // show toast notification
+    notify();
   };
 
   return (
@@ -83,16 +112,19 @@ export default function ProductItemPage() {
 
           {/* add to cart button */}
           <div className="flex space-x-2 items-start justify-center sm:justify-start">
-            <QuantityButton quantity={quantity} setQuantity={setQuantity} />
+            <QuantityButton
+              quantity={itemQuantity}
+              setQuantity={setItemQuantity}
+            />
             <button
               className={clsx(
                 "flex items-center justify-center space-x-3 rounded-md px-6 py-2 bg-orange hover:bg-opacity-80",
-                quantity < 1
+                itemQuantity < 1
                   ? "opacity-50 cursor-not-allowed"
                   : "cursor-pointer"
               )}
               onClick={addItemToCart}
-              disabled={quantity < 1}
+              disabled={itemQuantity < 1}
             >
               {loading ? (
                 <Image
@@ -107,8 +139,11 @@ export default function ProductItemPage() {
                   aria-hidden="true"
                 />
               )}
-              <span className="text-white font-bold">Add to cart</span>
+              <span className="text-white font-bold">
+                {productIsInCart ? "Update cart" : "Add to cart"}
+              </span>
             </button>
+            <ToastNotification />
           </div>
         </div>
       </div>
