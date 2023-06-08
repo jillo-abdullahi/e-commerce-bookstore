@@ -40,6 +40,7 @@ const ProfileCaptureModal: React.FC<ProfileCaptureModalProps> = ({
     setImageSrc(null);
     setCrop(defaultCrop);
     setIsOpen();
+    setCroppedImageSrc("");
   };
 
   return (

@@ -6,8 +6,8 @@ import { PencilIcon } from "@heroicons/react/24/outline";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/redux/store";
 import { updateUser } from "@/redux/slices/userSlice";
-import InputField from "@/app/account/components/InputField";
 import ProfileCaptureModal from "@/app/account/components/ProfileCaptureModal";
+import ProfileDetailsForm from "@/app/account/components/ProfileDetailsForm";
 
 export default function AccountPage() {
   const {
@@ -51,9 +51,10 @@ export default function AccountPage() {
 
   return (
     <div className="container mx-auto pt-12 pb-24 max-w-[1015px]">
-      <h1 className="text-2xl sm:text-4xl font-bold mb-12 text-gray-900">
+      <h1 className="text-2xl sm:text-4xl font-bold mb-2 text-gray-900">
         Account settings
       </h1>
+      <h2 className="font-light mb-10">Manage your account details</h2>
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 lg:gap-x-2">
         {/* profile image  */}
         <div className="lg:col-span-5">
@@ -80,65 +81,11 @@ export default function AccountPage() {
         </div>
 
         {/* profile details */}
-        <form className="lg:col-span-7" onSubmit={handleSaveChanges}>
-          <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-            <div className="sm:col-span-3">
-              <InputField
-                label="First name"
-                type="text"
-                name="first-name"
-                id="firstName"
-                required={true}
-                value={userDetails.firstName}
-                onChange={handleInputChange}
-              />
-            </div>
-
-            <div className="sm:col-span-3">
-              <InputField
-                label="Last name"
-                type="text"
-                name="last-name"
-                id="lastName"
-                required={true}
-                value={userDetails.lastName}
-                onChange={handleInputChange}
-              />
-            </div>
-
-            <div className="sm:col-span-4">
-              <InputField
-                label="Email address"
-                id="email"
-                name="email"
-                type="email"
-                value="jillo.woche@gmail.com"
-                disabled={true}
-              />
-            </div>
-
-            <div className="sm:col-span-2">
-              <InputField
-                label="Billing status"
-                id="billing-status"
-                name="billing-status"
-                type="text"
-                value="Pro"
-                disabled={true}
-              />
-            </div>
-          </div>
-
-          {/* save changes button  */}
-          <div className="flex justify-center lg:justify-start mt-10">
-            <button
-              type="submit"
-              className="flex items-center justify-center py-3 px-6 text-white bg-orange rounded-md hover:bg-opacity-80 max-w-[500px]"
-            >
-              Save changes
-            </button>
-          </div>
-        </form>
+        <ProfileDetailsForm
+          userDetails={userDetails}
+          handleInputChange={handleInputChange}
+          handleSaveChanges={handleSaveChanges}
+        />
       </div>
 
       {/* profile image capture modal */}
