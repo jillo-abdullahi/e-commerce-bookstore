@@ -17,9 +17,14 @@ const CartContainer: React.FC = () => {
         </div>
 
         {/* cart items */}
-        {Object.values(productsInCart).map((product) => (
-          <CartItem key={product.id} product={product} />
-        ))}
+        {Object.values(productsInCart).map(
+          ({ id, image, quantity, price, title }) => (
+            <CartItem
+              key={id}
+              product={{ id, image, quantity, price, title }}
+            />
+          )
+        )}
       </div>
       {/* cart summary */}
       <div className="lg:col-span-4">

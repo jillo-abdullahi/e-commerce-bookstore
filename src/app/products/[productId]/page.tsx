@@ -51,8 +51,15 @@ export default function ProductItemPage() {
   // add item to cart
   const addItemToCart = () => {
     dispatch(loadingCart(true));
+
     if (product) {
-      dispatch(addToCart({ ...product, quantity: itemQuantity }));
+      const { quantity, id, image, title, price } = product;
+      dispatch(
+        addToCart({
+          ...{ quantity, id, image, title, price },
+          quantity: itemQuantity,
+        })
+      );
     }
     dispatch(loadingCart(false));
 

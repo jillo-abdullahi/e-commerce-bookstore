@@ -7,6 +7,18 @@ type Product = {
   quantity: number;
 };
 
+type CartItem = {
+  id: number;
+  title: string;
+  price: number;
+  image: string;
+  quantity: number;
+};
+
+type CartItems = {
+  [key: number]: CartItem;
+};
+
 type Products = {
   [key: number]: Product;
 };
@@ -26,4 +38,4 @@ type User = {
   profileImage: string;
 };
 
-export type { Product, Author, Products, User };
+export type { Product, Author, Products, User, CartItem, CartItems };

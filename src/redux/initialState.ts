@@ -1,7 +1,7 @@
-import { Products, User } from "@/types";
+import { CartItems, User } from "@/types";
 
 const cartInitialState: {
-  productsInCart: Products;
+  productsInCart: CartItems;
   loading: boolean;
   error: string;
 } = {

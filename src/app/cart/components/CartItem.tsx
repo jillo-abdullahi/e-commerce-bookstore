@@ -4,7 +4,7 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useDispatch } from "react-redux";
 import ColumnItem from "@/app/shared/ColumnItem";
 import { QuantityButton } from "@/app/shared/Buttons";
-import { Product } from "@/types";
+import { CartItem } from "@/types";
 import {
   addToCart,
   loadingCart,
@@ -13,7 +13,7 @@ import {
 import Link from "next/link";
 
 interface CartItemProps {
-  product: Product;
+  product: CartItem;
 }
 const CartItem: React.FC<CartItemProps> = ({ product }) => {
   const dispatch = useDispatch();
@@ -21,7 +21,14 @@ const CartItem: React.FC<CartItemProps> = ({ product }) => {
 
   // change item quantity in cart
   useEffect(() => {
-    dispatch(addToCart({ ...product, quantity: itemQuantity }));
+    // extract cart item from product
+    const { quantity, id, image, title, price } = product;
+    dispatch(
+      addToCart({
+        ...{ quantity, id, image, title, price },
+        quantity: itemQuantity,
+      })
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [itemQuantity]);
 

@@ -1,19 +1,19 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { cartInitialState } from "@/redux/initialState";
-import { Product } from "@/types";
+import { CartItem } from "@/types";
 
 const cartSlice = createSlice({
   name: "cart",
   initialState: cartInitialState,
   reducers: {
-    addToCart: (state, action: PayloadAction<Product>) => {
-      const { id, quantity } = action.payload;
+    addToCart: (state, action: PayloadAction<CartItem>) => {
+      const { id, quantity, price, image, title } = action.payload;
       const { productsInCart } = state;
       try {
         if (productsInCart[id]) {
           state.productsInCart[id].quantity = quantity;
         } else {
-          state.productsInCart[id] = action.payload;
+          state.productsInCart[id] = { id, quantity, price, image, title };
         }
 
         state.error = "";
