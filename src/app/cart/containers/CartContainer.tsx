@@ -1,5 +1,5 @@
-import CartItem from "@/components/CartItem";
-import CartSummary from "@/components/CartSummary";
+import CartItem from "@/app/cart/components/CartItem";
+import CartSummary from "@/app/cart/components/CartSummary";
 import { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
 

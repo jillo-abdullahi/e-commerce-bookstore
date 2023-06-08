@@ -6,8 +6,8 @@ import { PencilIcon } from "@heroicons/react/24/outline";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/redux/store";
 import { updateUser } from "@/redux/slices/userSlice";
-import InputField from "@/components/InputField";
-import ProfileCaptureModal from "@/containers/ProfileCaptureModal";
+import InputField from "@/app/account/components/InputField";
+import ProfileCaptureModal from "@/app/account/components/ProfileCaptureModal";
 
 export default function AccountPage() {
   const {

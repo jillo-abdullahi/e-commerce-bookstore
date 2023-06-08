@@ -1,11 +1,10 @@
 "use client";
 
-import { ShoppingCartIcon } from "@heroicons/react/20/solid";
-import CartContainer from "@/containers/CartContainer";
+import CartContainer from "@/app/cart/containers/CartContainer";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import BackToProducts from "@/components/BackToProducts";
-import CartEmptyState from "@/components/CartEmptyState";
+import CartEmptyState from "@/app/cart/components/CartEmptyState";
 
 export default function CartPage() {
   const { productsInCart } = useSelector((state: RootState) => state.cart);
