@@ -2,7 +2,6 @@
 
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ChevronLeftIcon } from "@heroicons/react/20/solid";
 import { RootState } from "@/redux/store";
@@ -11,10 +10,7 @@ import { addToCart, loadingCart } from "@/redux/slices/cartSlice";
 import { booksList, authorInfo } from "@/utils/constants";
 import { Product } from "@/types";
 import { isEmpty } from "lodash";
-import {
-  ToastNotification,
-  emitterSettings,
-} from "@/app/shared/ToastNotification";
+import { ToastNotification, notify } from "@/app/shared/ToastNotification";
 import Link from "next/link";
 import Product404State from "@/app/products/components/Product404State";
 import ProductRightContent from "@/app/products/components/ProductRightContent";
@@ -51,11 +47,6 @@ export default function ProductItemPage() {
       setProductNotFound(false);
     }
   }, [productId]);
-
-  // succes notification
-  const notify = (text: string) => {
-    toast.success(text, emitterSettings);
-  };
 
   // add item to cart
   const addItemToCart = () => {

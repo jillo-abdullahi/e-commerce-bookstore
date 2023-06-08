@@ -1,6 +1,6 @@
-import { ToastContainer, ToastOptions } from "react-toastify";
+import { ToastContainer, ToastOptions, toast } from "react-toastify";
 
-export const emitterSettings: ToastOptions = {
+const emitterSettings: ToastOptions = {
   position: "bottom-right",
   autoClose: 1000,
   hideProgressBar: true,
@@ -11,7 +11,11 @@ export const emitterSettings: ToastOptions = {
   theme: "light",
 };
 
-export const ToastNotification = () => {
+const notify = (text: string) => {
+  toast.success(text, emitterSettings);
+};
+
+const ToastNotification = () => {
   return (
     <ToastContainer
       position="bottom-right"
@@ -27,3 +31,5 @@ export const ToastNotification = () => {
     />
   );
 };
+
+export { ToastNotification, notify };

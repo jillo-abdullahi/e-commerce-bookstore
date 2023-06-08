@@ -2,12 +2,14 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import "react-toastify/dist/ReactToastify.css";
 import { PencilIcon } from "@heroicons/react/24/outline";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/redux/store";
 import { updateUser } from "@/redux/slices/userSlice";
 import ProfileCaptureModal from "@/app/account/components/ProfileCaptureModal";
 import ProfileDetailsForm from "@/app/account/components/ProfileDetailsForm";
+import { ToastNotification, notify } from "@/app/shared/ToastNotification";
 
 export default function AccountPage() {
   const {
@@ -41,8 +43,8 @@ export default function AccountPage() {
   // push changes to redux store
   const handleSaveChanges = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     dispatch(updateUser(userDetails));
+    notify("Profile updated successfully");
   };
 
   const openCaptureModal = () => {
@@ -94,6 +96,8 @@ export default function AccountPage() {
         setIsOpen={openCaptureModal}
         setProfileImage={handleProfileImageChange}
       />
+
+      <ToastNotification />
     </div>
   );
 }
