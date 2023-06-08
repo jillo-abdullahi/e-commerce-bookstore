@@ -4,6 +4,9 @@ import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { ChevronLeftIcon } from "@heroicons/react/20/solid";
 import { RootState } from "@/redux/store";
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart, loadingCart } from "@/redux/slices/cartSlice";
@@ -16,8 +19,7 @@ import {
   ToastNotification,
   emitterSettings,
 } from "@/components/ToastNotification";
-import "react-toastify/dist/ReactToastify.css";
-import { toast } from "react-toastify";
+import Link from "next/link";
 
 export default function ProductItemPage() {
   const dispatch = useDispatch();
@@ -70,9 +72,19 @@ export default function ProductItemPage() {
   return (
     <div className="container mx-auto max-w-[1015px] pt-12 pb-24">
       {/* title, author, description */}
-      <div className="mb-12 w-full text-left space-y-2">
+      <div className="relative mb-12 w-full text-left space-y-2">
         <h1 className="uppercase text-orange font-bold">{authorInfo.name}</h1>
         <h2 className="text-2xl font-bold">{product?.title}</h2>
+
+        {/* back button */}
+        <Link href="/products" className="hidden xl:block">
+          <button className="absolute top-0 bottom-0 my-auto -left-20 group flex items-center justify-center p-4 group bg-gray-100 rounded-full w-10 h-10 hover:bg-orange">
+            <ChevronLeftIcon
+              className="block h-6 w-6 text-gray-500 cursor-pointer flex-shrink-0 group-hover:text-white"
+              aria-hidden="true"
+            />
+          </button>
+        </Link>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-12 gap-x-0 sm:gap-x-16">
         <div className="flex flex-col space-y-5 col-span-6 lg:col-span-8">
